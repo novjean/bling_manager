@@ -1,0 +1,6 @@
+package com.example.bling_manager
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
