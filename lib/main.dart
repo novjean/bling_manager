@@ -11,6 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bling Manager',
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+        accentColor: Colors.amber,
+      ),
       home: MyHomePage(),
     );
   }
