@@ -47,16 +47,25 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        children: groupedTransactionValues.map((data) {
-          return Chartbar(
-            data['day'],
-            data['amount'],
-            totalSpending == 0.0
-                ? 0.0
-                : (data['amount'] as double) / totalSpending,
-          );
-        }).toList(),
+      child: Padding(
+        //container with only padding, you can use just Padding
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues.map((data) {
+            return Flexible(
+              // use only the space that
+              fit: FlexFit.tight,
+              child: Chartbar(
+                data['day'],
+                data['amount'],
+                totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
