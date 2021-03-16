@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -10,12 +11,13 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
+  DateTime _selectedDate;
 
-  void submitData() {
-    final enteredTitle = titleController.text;
-    final enteredAmount = double.parse(amountController.text);
+  void _submitData() {
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
 
     if (enteredTitle.isEmpty || enteredAmount <= 0) return;
 
@@ -23,6 +25,23 @@ class _NewTransactionState extends State<NewTransaction> {
 
     // close the modal sheet after data submitted
     Navigator.of(context).pop();
+  }
+
+  //method to show date picker
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) return;
+
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
+    //use last date as now as in this app we can't add an expense for future
   }
 
   @override
@@ -35,8 +54,8 @@ class _NewTransactionState extends State<NewTransaction> {
           children: [
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
-              controller: titleController,
-              onSubmitted: (_) => submitData(),
+              controller: _titleController,
+              onSubmitted: (_) => _submitData(),
               // fname with () required when called from here
 
               // onChanged: (value) {
@@ -45,9 +64,9 @@ class _NewTransactionState extends State<NewTransaction> {
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
-              controller: amountController,
+              controller: _amountController,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
               //_ is have an argument but I don't want to use it
               // onChanged: (value) => amountInput = value,
             ),
@@ -55,7 +74,14 @@ class _NewTransactionState extends State<NewTransaction> {
               height: 70,
               child: Row(
                 children: [
-                  Text('No Date Chosen'),
+                  Expanded(
+                    // takes all the space it can get from the row
+                    child: Text(
+                      _selectedDate == null
+                          ? 'No Date Chosen'
+                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
+                    ),
+                  ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
                     child: Text(
@@ -64,7 +90,7 @@ class _NewTransactionState extends State<NewTransaction> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: _presentDatePicker,
                   ),
                 ],
               ),
@@ -73,7 +99,7 @@ class _NewTransactionState extends State<NewTransaction> {
               child: Text('Add Transaction'),
               color: Colors.purple,
               textColor: Theme.of(context).textTheme.button.color,
-              onPressed: submitData,
+              onPressed: _submitData,
             ),
           ],
         ),
