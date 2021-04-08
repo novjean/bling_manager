@@ -13,7 +13,6 @@ class TransactionList extends StatelessWidget {
     return Container(
       // height hardcoded for iPhone 12 Pro Max
       height: 660,
-      color: Colors.red,
       child: transactions.isEmpty
           ? Column(
               children: [
