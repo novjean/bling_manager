@@ -140,6 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // if is a new feature introduced in flutter
             if (isLandscape)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
