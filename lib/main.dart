@@ -2,10 +2,19 @@ import 'package:bling_manager/widgets/chart.dart';
 import 'package:bling_manager/widgets/new_transaction.dart';
 import 'package:bling_manager/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'models/transaction.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  // this is part of the new flutter for determining the orientation
+  // WidgetsFlutterBinding.ensureInitialized();
+  //useful for setting the orientation of the device where the app should work
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
