@@ -22,6 +22,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // there is a cupertino app too but it is a lil limited
     return MaterialApp(
       title: 'Bling Manager',
       theme: ThemeData(
@@ -163,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Show Chart'),
+                  Text('Show Chart', style: Theme.of(context).textTheme.title,),
                   // adaptive checks for which ios/android and draws accordingly
                   Switch.adaptive(
                     activeColor: Theme.of(context).accentColor,
