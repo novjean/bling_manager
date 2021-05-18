@@ -107,6 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _deleteNewTransaction(String id) {
+    // this causes the state to be invalid and it uses the changed value in thenext refresh cycle
+    // so if the refresh rate is 60 fps, then it would be in 1000/60 ms
     setState(() {
       _userTransactions.removeWhere((tx) {
         return tx.id == id;
@@ -116,6 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('build() MyHomePageState');
+
     // useful to have local mediaquery for performance
     // and the values gets refreshed when screen orienation or anything changes
     final mediaQuery = MediaQuery.of(context);

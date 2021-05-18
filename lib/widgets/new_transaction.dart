@@ -10,6 +10,7 @@ class NewTransaction extends StatefulWidget {
 
   NewTransaction(this.addTx);
 
+  // create a new state object with the class down there
   @override
   _NewTransactionState createState() => _NewTransactionState();
 }

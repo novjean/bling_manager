@@ -5,6 +5,7 @@ class Chartbar extends StatelessWidget {
   final double spendingAmount;
   final double spendingPctOfTotal;
 
+  // instance of this object is immmutable, which means once the value is set, it cannot be changed
   Chartbar(this.label, this.spendingAmount, this.spendingPctOfTotal);
 
   @override
