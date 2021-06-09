@@ -34,6 +34,7 @@ class TransactionList extends StatelessWidget {
             children: transactions
                 .map((tx) =>
             // UniqueKey() auto creates unique key
+            //only use ValueKey() or keys in general when there is a listview with stateful scenario
                     TransactionItem(key:ValueKey(tx.id),
                         transaction: tx, deleteTx: deleteTx))
                 .toList());
